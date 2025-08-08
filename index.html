@@ -7,6 +7,32 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  
+ <body onclick="document.getElementById('bgm').play(); this.onclick=null;">
+
+  <audio id="bgm" loop>
+  <source src="backsound.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const bgm = document.getElementById('bgm');
+  
+  // Hentikan saat keluar
+  window.addEventListener("beforeunload", function() {
+    bgm.pause();
+    bgm.currentTime = 0;
+  });
+  
+  // Pause jika ganti tab / minimize
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      bgm.pause();
+    } else {
+      bgm.play();
+    }
+  });
+</script>
+  
   <header>
     <h1>Brian Moser</h1>
     <p>The Ice Truck Killer</p>
